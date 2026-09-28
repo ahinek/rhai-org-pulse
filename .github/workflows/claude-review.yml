@@ -279,6 +279,7 @@ jobs:
             --json-schema
             {"type":"object","additionalProperties":false,"required":["verdict","unfixed_blocking_issues"],"properties":{"verdict":{"type":"string","enum":["PASS","FAIL"]},"unfixed_blocking_issue[...]
             --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Read,Glob,Grep"          prompt: |
+            prompt: |
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ steps.context.outputs.pr_number }}
 
