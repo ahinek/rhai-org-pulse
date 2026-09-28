@@ -249,50 +249,10 @@ jobs:
           prompt: |
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ steps.context.outputs.pr_number }}
-
-            You are reviewing a pull request. Your job is to:
-
-            1. **Determine PR context**:
-               - If no PR number is available (e.g., workflow_dispatch without context),
-                 post a comment explaining that no PR was found and exit.
-               - Run `gh pr checkout <PR_NUMBER>` to switch to the PR branch.
-
-            2. **Review** the PR diff. Read `AGENTS.md` (hard constraints and
-               conventions) and `.github/instructions/review.instructions.md`
-               (review checklist and verdict rules). Apply all criteria from both.
-
-            3. **Fix** any issues you find by editing the files directly:
-               - Use Edit/Write tools to modify the source files
-               - Fix all issues you're confident about: bugs, style, security, performance
-               - Only commit and push if you actually made changes:
-                 ```
-                 git add -u
-                 git diff --cached --quiet || git commit -m "fix: Claude code review autofix
-
-                 <concise summary of changes>"
-                 git push origin HEAD
-                 ```
-
-            4. **Report** your findings:
-               - Use inline comments for issues you found (whether or not you fixed them)
-               - Post a top-level PR comment summarizing:
-                 - Issues found and fixed (with brief descriptions)
-                 - Issues found but NOT fixed (with explanations of why)
-                 - If no issues were found, say so briefly
-
-            5. **Set review verdict**: Follow the "Verdict rules" section in
-               `.github/instructions/review.instructions.md` to populate the
-               structured output. This is your very last action.
-
-            **Important rules:**
-            - Never force push. Only push to the current PR branch via `git push origin HEAD`.
-            - Use `git add -u` (not `git add -A`) to avoid staging untracked files.
-            - Be concise. Focus on actionable feedback. Don't nitpick style unless
-              it impacts readability.
-            - Only fix things you're confident about. If a fix is ambiguous or
-              subjective, comment instead of changing code.
-            - Do not modify files outside the scope of the PR unless necessary to
-              fix an issue (e.g., a missing import in another file).
+            READ-ONLY review of fork PR. Use `gh pr diff` to review changes.
+            Check `AGENTS.md` and `.github/instructions/review.instructions.md`.
+            Report findings and set verdict: PASS or FAIL with any blocking issues.
+            Do NOT run any code from the PR. 
 
         env:
           ANTHROPIC_VERTEX_PROJECT_ID: "rhai-org-pulse"
