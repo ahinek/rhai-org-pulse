@@ -247,7 +247,7 @@ jobs:
             --json-schema
             {"type":"object","additionalProperties":false,"required":["verdict","unfixed_blocking_issues"],"properties":{"verdict":{"type":"string","enum":["PASS","FAIL"]},"unfixed_blocking_issues":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["category","description"],"properties":{"category":{"type":"string"},"description":{"type":"string"}}}}}}
             --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh pr checkout:*),Bash(git add:*),Bash(git commit:*),Bash(git push origin:*),Bash(git diff:*),Bash(git status:*),Read,Glob,Grep,Edit,Write"            
-          prompt: |
+          prompt:|
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ steps.context.outputs.pr_number }}
             READ-ONLY review of fork PR. Use `gh pr diff` to review changes.
@@ -278,8 +278,8 @@ jobs:
             --output-format stream-json
             --json-schema
             {"type":"object","additionalProperties":false,"required":["verdict","unfixed_blocking_issues"],"properties":{"verdict":{"type":"string","enum":["PASS","FAIL"]},"unfixed_blocking_issue[...]
-            --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Read,Glob,Grep"          prompt: |
-            prompt: |
+            --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Read,Glob,Grep"
+            prompt:|
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ steps.context.outputs.pr_number }}
 
